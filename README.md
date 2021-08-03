@@ -18,9 +18,12 @@ Set the variables listed under `Variables to set` accordingly. Read the comments
 
 **IMPORTANT**: NOT ALL MODEL-IMAGE COMBINATIONS WILL WORK! You can't use a model trained on 3 channels (i.e. H&E) to segment a 1 channel image (i.e. IF). I've tried to catch these errors, and if the segmentation does fail, the log should provide a descriptive error.
 
-| Model (column) vs Image (row)  | 1 channel (`dsb2018_paper` or `dsb2018_heavy_augment`) |3 channels (`he_heavy_augment` ) |
+| Image (row) vs Model (column)  | 1 channel (`dsb2018_paper` or `dsb2018_heavy_augment`) |3 channels (`he_heavy_augment` ) |
 | ------------- | ------------- | ------------- |
 | **IF**  | Yes  | No  |
 | **IMC**  | Yes (enable normalization, 1-99th percentile works)  | No  |
 | **HDAB**  | Yes (set color vectors, enable normalization)  | Yes (segmentation may be poor if brown nuclei are too optically dense)  |
 | **H&E**  | Yes (set color vectors, enable normalization)  | Yes  |
+
+## Citing
+Please cite the following:
