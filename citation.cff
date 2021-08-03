@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Zaidi"
+  given-names: "Mark"
+  orcid: "https://orcid.org/0000-0002-9315-4062"
+- family-names: "McKee"
+  given-names: "Trevor"
+  orcid: "https://orcid.org/0000-0002-2195-6146"
+- family-names: "Wouters"
+  given-names: "Bradly"
+  orcid: "https://orcid.org/0000-0002-8187-592X"
+title: "Universal-StarDist-for-QuPath"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2021-08-03
+url: "https://github.com/MarkZaidi/Universal-StarDist-for-QuPath"
