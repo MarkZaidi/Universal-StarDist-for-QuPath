@@ -23,8 +23,6 @@ nuc_intensity_measurement='Ir(193)_193Ir-DNA193: Nucleus: Mean'
 normalize_low_pct=0 //lower limit for normalization. Set to 0 to disable
 normalize_high_pct=100 // upper limit for normalization. Set to 100 to disable.
 
-param_channel=param_channel-1 // corrects for off-by-one error
-normalize_high_pct=normalize_high_pct-0.000000000001 //corrects for some bizarre normalization issue when attempting to set 100 as the upper limit
 // Specify the model directory (you will need to change this!). Uncomment the model you wish to use
 //Brightfield models
     //def pathModel = 'C:/Users/Mark Zaidi/Documents/QuPath/Stardist Trained Models/he_heavy_augment'
@@ -33,6 +31,8 @@ normalize_high_pct=normalize_high_pct-0.000000000001 //corrects for some bizarre
     def pathModel = 'C:/Users/Mark Zaidi/Documents/QuPath/Stardist Trained Models/dsb2018_heavy_augment'
 
 //End of variables to set ******************************************************
+param_channel=param_channel-1 // corrects for off-by-one error
+normalize_high_pct=normalize_high_pct-0.000000000001 //corrects for some bizarre normalization issue when attempting to set 100 as the upper limit
 
 // Import plugins
 import qupath.tensorflow.stardist.StarDist2D
