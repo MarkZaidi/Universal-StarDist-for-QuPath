@@ -26,4 +26,15 @@ Set the variables listed under `Variables to set` accordingly. Read the comments
 | **H&E**  | Yes (set color vectors, enable normalization)  | Yes  |
 
 ## Citing
-Please cite the following:
+Please cite this repository:
+```
+Zaidi M., McKee T., Wouters B. (2021). Universal-StarDist-for-QuPath (version 1.0.0). DOI: https://doi.org/10.5281/zenodo.1234
+```
+StarDist:
+```
+Uwe Schmidt, Martin Weigert, Coleman Broaddus, and Gene Myers. Cell Detection with Star-convex Polygons. International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI), Granada, Spain, September 2018.
+```
+And QuPath:
+```
+Bankhead, P. et al. (2017). QuPath: Open source software for digital pathology image analysis. Scientific Reports. https://doi.org/10.1038/s41598-017-17204-5
+```
