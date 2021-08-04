@@ -38,3 +38,10 @@ And QuPath:
 ```
 Bankhead, P. et al. (2017). QuPath: Open source software for digital pathology image analysis. Scientific Reports. https://doi.org/10.1038/s41598-017-17204-5
 ```
+## To do:
+- Improve documentation (see Mike's msg on image.sc for details)
+  - Median filter is from the MedianFilterOp class of the package qupath.opencv.ops . Requires an int value corresponding to the radius of the median filter kernel. For radii larger than 2, the image must be in uint8 bit depth (not sure why that matters, but it’ll throw an exception). Division and addition can be int or floating point.
+  - param_threshold is used to filter out objects with a detection probability below the value. Gets assigned during StarDist segmentation if .includeProbability(true) . Floating point or ints work, range is 0-1. nuc_intensity_measurement is before normalization
+  - cell expansion size is in pixels
+  - specify units for all other parameters
+  - remove latter half of comment on param_channel, already fixed the zero-based numbering issue downstream
