@@ -8,17 +8,17 @@
  */
 //Variables to set *************************************************************
 def model_trained_on_single_channel=1 //Set to 1 if the pretrained model you're using was trained on IF sections, set to 0 if trained on brightfield
-param_channel=1 //channel to use for deconvolution. Note, the 1st channel is counted as number 0, and so on
-param_median=0 //median filter preprocessing
-param_divide=1 //division preprocessing
-param_add=0 //addition preprocessing
-param_threshold = 0.5//threshold for deteciton
-param_pixelsize=0 //resolution to perform segmentation at. Set to 0 for image resolution
-param_tilesize=1024 //size of tile for processing
-param_expansion=10 //size of cell expansion
-def min_nuc_area=0 //remove any nuclei with an area less than this (in microns)
+param_channel=1 //channel to use for nucleus detection. First channel in image is channel 1. If working with H&E or HDAB, channel 1 is hematoxylin.
+param_median=0 //median preprocessing: Requires an int value corresponding to the radius of the median filter kernel. For radii larger than 2, the image must be in uint8 bit depth. Default 0
+param_divide=1 //division preprocessing: int or floating point, divides selected channel intensity by value before segmenting. Useful when normalization is disabled. Default 1
+param_add=0 //addition preprocessing: int or floating point, add value to selected channel intensity before segmenting. Useful when normalization is disabled. Default 0
+param_threshold = 0.5//threshold for detection. All cells segmented by StarDist will have a detection probability associated with it, where higher values indicate more certain detections. Floating point, range is 0 to 1. Default 0.5
+param_pixelsize=0 //Pixel scale to perform segmentation at. Set to 0 for image resolution (default). Int values accepted, greater values  will be faster but may yield poorer segmentations.
+param_tilesize=1024 //size of tile in pixels for processing. Must be a multiple of 16. Lower values may solve any memory-related errors, but can take longer to process. Default is 1024.
+param_expansion=10 //size of cell expansion in pixels. Default is 10.
+def min_nuc_area=0 //remove any nuclei with an area less than or equal to this value
 nuc_area_measurement='Nucleus: Area µm^2'
-def min_nuc_intensity=0 //remove any detections with an intensity below this value
+def min_nuc_intensity=0 //remove any detections with an intensity less than or equal to this value
 nuc_intensity_measurement='Ir(193)_193Ir-DNA193: Nucleus: Mean'
 normalize_low_pct=0 //lower limit for normalization. Set to 0 to disable
 normalize_high_pct=100 // upper limit for normalization. Set to 100 to disable.
