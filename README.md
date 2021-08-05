@@ -15,6 +15,20 @@ Follow the steps listed in [StarDist - QuPath 0.2.3 documentation](https://qupat
 Download `Multimodal StarDist Segmentation.groovy` from this repository. Set `pathModel` in lines 30-33 to the pretrained brightfield and IF models listed above. Even if you plan to use only one model, it's still a good idea to modify the commented-out paths should you choose to change your model. Also remember, you need to have a selected annotation to run the StarDist segmentation. If you want to segment the whole image (not advised), use `Create full image annotation` from QuPath's objects dropdown menu, or via scripting.
 
 Set the variables listed under `Variables to set` accordingly. Read the comments adjacent to them for what they do.
+### Variable description
+- `model_trained_on_single_channel`: Set to 1 if the pretrained model you're using was trained on IF sections, set to 0 if trained on brightfield
+- `param_channel`: channel to use for nucleus detection. First channel in image is channel 1. If working with H&E or HDAB, channel 1 is hematoxylin.
+- `param_median`: median preprocessing: Requires an int value corresponding to the radius of the median filter kernel. For radii larger than 2, the image must be in uint8 bit depth. Default 0
+- `param_divide`: division preprocessing: int or floating point, divides selected channel intensity by value before segmenting. Useful when normalization is disabled. Default 1
+- `param_threshold`: threshold for detection. All cells segmented by StarDist will have a detection probability associated with it, where higher values indicate more certain detections. Floating point, range is 0 to 1. Default 0.5
+- `param_pixelsize`: size of tile in pixels for processing. Must be a multiple of 16. Lower values may solve any memory-related errors, but can take longer to process. Default is 1024.
+- `param_expansion`: size of cell expansion in pixels. Default is 10.
+- `min_nuc_area`: remove detections with `nuc_area_measurement` less than or equal to this value. Default is 0.
+- `nuc_area_measurement`: area measurement for object filtering. Default is "Nucleus: Area µm^2"
+- `min_nuc_intensity`: remove detections with `nuc_intensity_measurement` less than or equal to this value. Default is 0.
+- `nuc_intensity_measurement`: intensity measurement for object filtering.
+- `normalize_low_pct`: lower limit for normalization. Set to 0 to disable
+- `normalize_high_pct`: upper limit for normalization. Set to 100 to disable.
 
 **IMPORTANT**: NOT ALL MODEL-IMAGE COMBINATIONS WILL WORK! You can't use a model trained on 3 channels (i.e. H&E) to segment a 1 channel image (i.e. IF). I've tried to catch these errors, and if the segmentation does fail, the log should provide a descriptive error.
 
