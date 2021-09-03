@@ -56,3 +56,4 @@ Bankhead, P. et al. (2017). QuPath: Open source software for digital pathology i
 - Fix normalization issues
   - Ideally, I want to have an if statement embedded in the StarDist builder. Something along the lines of ``` If !(normalize_low_pct==0 & normalize_high_pct==100): .normalizePercentiles(normalize_low_pct,normalize_high_pct)``` such that setting them to 0 and 100 respectively disables `.normalizePercentiles` from being included in the builder, entirely. Just having trouble with making `if` statements inside of builders...
 - move `def pathObjects = getSelectedObjects()` to the top
+- Update for QuPath 0.3.0
