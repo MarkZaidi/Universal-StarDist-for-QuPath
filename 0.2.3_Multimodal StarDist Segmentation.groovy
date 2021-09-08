@@ -13,7 +13,7 @@ param_median=0 //median preprocessing: Requires an int value corresponding to th
 param_divide=1 //division preprocessing: int or floating point, divides selected channel intensity by value before segmenting. Useful when normalization is disabled. Default 1
 param_add=0 //addition preprocessing: int or floating point, add value to selected channel intensity before segmenting. Useful when normalization is disabled. Default 0
 param_threshold = 0.5//threshold for detection. All cells segmented by StarDist will have a detection probability associated with it, where higher values indicate more certain detections. Floating point, range is 0 to 1. Default 0.5
-param_pixelsize=0 //Pixel scale to perform segmentation at. Set to 0 for image resolution (default). Int values accepted, greater values  will be faster but may yield poorer segmentations.
+param_pixelsize=0.5 //Pixel scale to perform segmentation at. Set to 0 for image resolution (default). Int values accepted, greater values  will be faster but may yield poorer segmentations.
 param_tilesize=1024 //size of tile in pixels for processing. Must be a multiple of 16. Lower values may solve any memory-related errors, but can take longer to process. Default is 1024.
 param_expansion=10 //size of cell expansion in pixels. Default is 10.
 def min_nuc_area=0 //remove any nuclei with an area less than or equal to this value
@@ -35,8 +35,8 @@ param_channel=param_channel-1 // corrects for off-by-one error
 normalize_high_pct=normalize_high_pct-0.000000000001 //corrects for some bizarre normalization issue when attempting to set 100 as the upper limit
 
 // Import plugins 
-//import qupath.tensorflow.stardist.StarDist2D
-import qupath.ext.stardist.StarDist2D //using 0.3.0's version of StarDist. Comment this line and uncomment out the one above if on 0.2.3
+import qupath.tensorflow.stardist.StarDist2D //using 0.2.3's version of StarDist. Comment this line and uncomment out the one below if on 0.3.0
+//import qupath.ext.stardist.StarDist2D
 import static qupath.lib.gui.scripting.QPEx.*
 import groovy.time.*
 //
@@ -66,7 +66,7 @@ if (model_trained_on_single_channel!=1 && isBrightfield==false) {
             .threshold(param_threshold)              // Prediction threshold
             .normalizePercentiles(normalize_low_pct,normalize_high_pct) // Percentile normalization
             .pixelSize(param_pixelsize)              // Resolution for detection
-            //.doLog()
+            .doLog()
             .includeProbability(true)
             .measureIntensity()
             .tileSize(param_tilesize)
@@ -91,7 +91,7 @@ if (model_trained_on_single_channel!=1 && isBrightfield==false) {
             .threshold(param_threshold)              // Prediction threshold
             .normalizePercentiles(normalize_low_pct,normalize_high_pct) // Percentile normalization. REQUIRED FOR IMC DATA
             .pixelSize(param_pixelsize)              // Resolution for detection
-            //.doLog()
+            .doLog()
             .includeProbability(true)
             .measureIntensity()
             .tileSize(param_tilesize)
@@ -113,7 +113,7 @@ if (model_trained_on_single_channel!=1 && isBrightfield==false) {
             .threshold(param_threshold)              // Prediction threshold
             .normalizePercentiles(normalize_low_pct,normalize_high_pct) // Percentile normalization. REQUIRED FOR IMC DATA
             .pixelSize(param_pixelsize)              // Resolution for detection
-            //.doLog()
+            .doLog()
             .includeProbability(true)
             .measureIntensity()
             .tileSize(param_tilesize)
