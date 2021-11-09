@@ -1,3 +1,4 @@
+selectAnnotations()
 /** Scripts enabling use of pretrained stardist models for nucleus segmentation on Brightfield or IF images
  * 3 pretrained models are available at https://github.com/stardist/stardist-imagej/tree/master/src/main/resources/models/2D
  * and must be downloaded prior to running this script. Furthermore, you need to build QuPath with tensorflow (verified with CPU)
@@ -146,14 +147,14 @@ def toDelete2 = getDetectionObjects().findAll {measurement(it, nuc_intensity_mea
 removeObjects(toDelete2, true)
 //CLOSE DNN TO FREE UP VRAM
 dnn.getPredictionFunction().net.close()
-//Free up normal RAM
+//Free up normal RAM. Commented this out, as v0.3 should have better memory management anways
 //Alledgely, putting this at the end of a batch script will clear memory between each processed image
-Thread.sleep(100)
+//Thread.sleep(100)
 // Try to reclaim whatever memory we can, including emptying the tile cache
-javafx.application.Platform.runLater {
-    getCurrentViewer().getImageRegionStore().cache.clear()
-    System.gc()
-}
-Thread.sleep(100)
+//javafx.application.Platform.runLater {
+//    getCurrentViewer().getImageRegionStore().cache.clear()
+//    System.gc()
+//}
+//Thread.sleep(100)
 
 println ('Done in ' + CellDetection_duration)
