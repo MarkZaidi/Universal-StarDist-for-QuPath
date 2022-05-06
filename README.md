@@ -44,7 +44,7 @@ Set the variables listed under `Variables to set` accordingly. Read the comments
 ## Citing
 Please cite this repository:
 ```
-Zaidi M., McKee T., Wouters B. (2021). Universal-StarDist-for-QuPath (version 1.0.0). DOI: https://doi.org/10.5281/zenodo.1234
+Zaidi M., McKee T., Wouters B. (2021). Universal-StarDist-for-QuPath (https://github.com/MarkZaidi/Universal-StarDist-for-QuPath/) (version 1.0.0).
 ```
 StarDist:
 ```
