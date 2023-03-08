@@ -11,7 +11,7 @@ authors:
   given-names: "Bradly"
   orcid: "https://orcid.org/0000-0002-8187-592X"
 title: "Universal-StarDist-for-QuPath"
-version: 1.0.0
+version: 2.0.0
 doi: "10.13140/RG.2.2.36267.11046"
-date-released: 2021-08-03
+date-released: 2023-03-08
 url: "https://github.com/MarkZaidi/Universal-StarDist-for-QuPath"
