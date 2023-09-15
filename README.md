@@ -31,7 +31,7 @@ Set the variables listed under `Variables to set` accordingly. Read the comments
 - `nuc_intensity_measurement`: intensity measurement for object filtering.
 - `normalize_low_pct`: lower limit for normalization. Set to 0 to disable
 - `normalize_high_pct`: upper limit for normalization. Set to 100 to disable.
-
+## Model-modality compatibility
 **IMPORTANT**: NOT ALL MODEL-IMAGE COMBINATIONS WILL WORK! You can't use a model trained on 3 channels (i.e. H&E) to segment a 1 channel image (i.e. IF). I've tried to catch these errors, and if the segmentation does fail, the log should provide a descriptive error.
 
 | Image (row) vs Model (column)  | 1 channel (`dsb2018_paper` or `dsb2018_heavy_augment`) |3 channels (`he_heavy_augment` ) |
