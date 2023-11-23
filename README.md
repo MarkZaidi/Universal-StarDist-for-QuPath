@@ -1,7 +1,11 @@
 # Universal StarDist for QuPath
 ### Transfer trained StarDist models across imaging modalities with ease!
-## Updates
-- Added [GPU accelerated version of Universal StarDist for QuPath](https://github.com/MarkZaidi/Universal-StarDist-for-QuPath/blob/main/GPU_Multimodal%20StarDist%20Segmentation.groovy), geared towards batch image processing 
+## Preamble
+Universal Stardist for QuPath is a groovy script for use with the [QuPath Stardist extension](https://github.com/qupath/qupath-extension-stardist) developed by Dr. Pete Bankhead. Scripts taken from the [QuPath documentation on StarDist] (https://qupath.readthedocs.io/en/0.4/docs/deep/stardist.html) were aggregated and repurposed to allow for transmodality image segmentation. By detecting the modality of the image (Brightfield, HDAB, IF, etc.) from the image metadata, various preprocessing steps are applied to transform the input image to mimic the modality of the model used in training, effectively allowing for StarDist models trained in one modality to be applied to another. 
+
+For example, if an H&E image is segmented with an IF model (e.g. DSB2018), stain deconvolution is applied to the hematoxylin channel, which is then normalized, and passed to StarDist for segmentation, effectively passing a pseudo-IF DAPI image. For IMC, only normalization is applied however the channel index of the DNA counterstain must be specified. A summary of model-image compatibility is described in `Model-modality compatibility`.
+
+This script would not be possible without the contributions of Dr. Pete Bankhead and associated developers in making QuPath and the StarDist extension, and Dr. Uwe Schmidt's contributions for StarDist. As such, it is imperative to cite the aforementioned StarDist extension, and the publications listed under `Citing`.
 ## Introduction
 [StarDist](https://github.com/stardist/stardist) is a convolutional neural network (CNN) for cell segmentation, with notable benefits over conventional watershed segmentations. In their repository, they include [several pretrained models for 2D image segmentation](https://github.com/stardist/stardist-imagej/tree/master/src/main/resources/models/2D). Currently, these pretrained models can only be used on images of the same modality that they were trained on. For example, `dsb2018_heavy_augment` was trained on single channel grayscale images of the DAPI stain, and `he_heavy_augment` was trained on a 3 channel RGB H&E stained section. No publicly available models exist for segmenting HDAB or IMC images.
 
