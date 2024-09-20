@@ -7,7 +7,7 @@ For example, if an H&E image is segmented with an IF model (e.g. DSB2018), stain
 
 This script would not be possible without the contributions of Dr. Pete Bankhead and associated developers in making QuPath and the StarDist extension, and Dr. Uwe Schmidt's contributions for StarDist. As such, it is imperative to cite the aforementioned StarDist extension, and the publications listed under `Citing`.
 ## Introduction
-[StarDist](https://github.com/stardist/stardist) is a convolutional neural network (CNN) for cell segmentation, with notable benefits over conventional watershed segmentations. In their repository, they include [several pretrained models for 2D image segmentation](https://github.com/stardist/stardist-imagej/tree/master/src/main/resources/models/2D). Currently, these pretrained models can only be used on images of the same modality that they were trained on. For example, `dsb2018_heavy_augment` was trained on single channel grayscale images of the DAPI stain, and `he_heavy_augment` was trained on a 3 channel RGB H&E stained section. No publicly available models exist for segmenting HDAB or IMC images.
+[StarDist](https://github.com/stardist/stardist) is a convolutional neural network (CNN) for cell segmentation, with notable benefits over conventional watershed segmentations. In their repository, they include [several pretrained models for 2D image segmentation](https://github.com/qupath/models/tree/main/stardist). Currently, these pretrained models can only be used on images of the same modality that they were trained on. For example, `dsb2018_heavy_augment` was trained on single channel grayscale images of the DAPI stain, and `he_heavy_augment` was trained on a 3 channel RGB H&E stained section. No publicly available models exist for segmenting HDAB or IMC images.
 
 Here, we present a "Universal StarDist" groovy script for QuPath, that features a combination of stain deconvolution, image normalization, and other preprocessing techniques enabling the use of several pretrained models for segmenting images of a different modality. In the figure below, I used the `dsb2018_heavy_augment` with the same parameters to segment an H&E, HDAB, IF, and IMC image:
 ![Cover Figure](https://user-images.githubusercontent.com/52012166/128095821-eb2e35ea-aff9-4b2c-b36b-3386c2b48e3a.png)
@@ -16,7 +16,7 @@ Here, we present a "Universal StarDist" groovy script for QuPath, that features 
 The preprocessing tools present in our script provides a layer of robustness to StarDist, such that even though a pretrained model might not exist for your specific image type, you have the ability to experiment with publicly available models generated from other imaging modalities. This can save you hours from having to train a model yourself, assuming you have the computational resources at your disposal.
 
 ## Installation
-Follow the steps listed in https://qupath.readthedocs.io/en/stable/docs/deep/stardist.html to setup StarDist with QuPath 0.3.0. This includes [downloading some pretrained models](https://github.com/stardist/stardist-imagej/tree/master/src/main/resources/models/2D). Verify that StarDist is working by progressing through QuPath's documentation and running on a few sample images. If using QuPath 0.2.3, a legacy script has been included as the library for StarDist changes in 0.3.0. With the release of 0.3.0, Universal-StarDist-for-QuPath supports Tensorflow (CPU), OpenCV (CPU), and OpenCV (GPU). GPU-accelerated segmentation can be 47-223% faster, depending on your CPU, GPU, pre/post processing steps in the StarDist builder, and RAM/VRAM.
+Follow the steps listed in https://qupath.readthedocs.io/en/stable/docs/deep/stardist.html to setup StarDist with QuPath 0.3.0. This includes [downloading some pretrained models](https://github.com/qupath/models/tree/main/stardist). Verify that StarDist is working by progressing through QuPath's documentation and running on a few sample images. If using QuPath 0.2.3, a legacy script has been included as the library for StarDist changes in 0.3.0. With the release of 0.3.0, Universal-StarDist-for-QuPath supports Tensorflow (CPU), OpenCV (CPU), and OpenCV (GPU). GPU-accelerated segmentation can be 47-223% faster, depending on your CPU, GPU, pre/post processing steps in the StarDist builder, and RAM/VRAM.
 
 Download `Multimodal StarDist Segmentation.groovy` from this repository. Set `pathModel` in lines 30-33 to the pretrained brightfield and IF models listed above. Even if you plan to use only one model, it's still a good idea to modify the commented-out paths should you choose to change your model. Also remember, you need to have a selected annotation to run the StarDist segmentation. If you want to segment the whole image (not advised), use `Create full image annotation` from QuPath's objects dropdown menu, or via scripting.
 
@@ -48,7 +48,7 @@ Set the variables listed under `Variables to set` accordingly. Read the comments
 ## Citing
 Please cite this repository:
 ```
-Zaidi M., McKee T., Wouters B. (2021). Universal-StarDist-for-QuPath (https://github.com/MarkZaidi/Universal-StarDist-for-QuPath/) (version 1.0.0). Date released: 2021-08-03
+Zaidi M., Wouters B. (2021). Universal-StarDist-for-QuPath (https://github.com/MarkZaidi/Universal-StarDist-for-QuPath/) (version 1.0.0). Date released: 2021-08-03
 ```
 StarDist:
 ```
